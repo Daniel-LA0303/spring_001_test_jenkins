@@ -6,16 +6,15 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.11</version>
-		
-		<!-- Necesitamos el empaqetamiento war para poder desplegarlo en Tomacat -->
-		<packaging>war</packaging>
-		
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.spring.core5</groupId>
 	<artifactId>Core5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Core5</name>
+	<!-- Necesitamos el empaqetamiento war para poder desplegarlo en Tomacat -->
+	<packaging>war</packaging>
+	
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
