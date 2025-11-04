@@ -8,7 +8,7 @@
 		<version>3.4.11</version>
 		
 		<!-- Necesitamos el empaqetamiento war para poder desplegarlo en Tomacat -->
-		<packing>war</packing>
+		<packaging>war</packaging>
 		
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
