@@ -31,41 +31,47 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/{id}")
-	public EmployeesEntity getEmployeeById(@PathVariable Long id) {
-		
-		return employeeService.getEmployeeById(id);
+	public ResponseEntity<EmployeesEntity> getEmployeeById(@PathVariable Long id) {
+	    EmployeesEntity employee = employeeService.getEmployeeById(id);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
 
 	@GetMapping("/get-by-email/{email}")
-	public EmployeesEntity getEmployeeEmail(@PathVariable String email) {
-		return employeeService.getEmployeeByEmail(email);
+	public ResponseEntity<EmployeesEntity> getEmployeeEmail(@PathVariable String email) {
+	    EmployeesEntity employee = employeeService.getEmployeeByEmail(email);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/get-employee-small-info/{id}")
-	public EmployeeDTO getEmployeeSmallInfo(@PathVariable Long id) {
-		return employeeService.getEmployeeSmallInfoById(id);
+	public ResponseEntity<EmployeeDTO> getEmployeeSmallInfo(@PathVariable Long id) {
+	    EmployeeDTO dto = employeeService.getEmployeeSmallInfoById(id);
+	    return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/get-employee-native-query/{id}")
-	public EmployeesEntity getEmployeeNativeQuery(@PathVariable Long id) {
-		return employeeService.getEmployeeByIdNativeQuery(id);
+	public ResponseEntity<EmployeesEntity> getEmployeeNativeQuery(@PathVariable Long id) {
+	    EmployeesEntity employee = employeeService.getEmployeeByIdNativeQuery(id);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/get-employee-by-email-native-query/{email}")
-	public Object getEmployeeByEmailNativeQuery(@PathVariable String email) {
-		return employeeService.getEmployeeByNameSmallInfo(email);
+	public ResponseEntity<Object> getEmployeeByEmailNativeQuery(@PathVariable String email) {
+	    Object employee = employeeService.getEmployeeByNameSmallInfo(email);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/get-employee-by-procedure/{id}")
-	public EmployeesEntity getEmployeeByProcedure(@PathVariable Long id) {
-		return employeeService.getEmployeeByProcedure(id);
+	public ResponseEntity<EmployeesEntity> getEmployeeByProcedure(@PathVariable Long id) {
+	    EmployeesEntity employee = employeeService.getEmployeeByProcedure(id);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/get-employee-by-procedure-v2/{id}")
-	public EmployeesEntity getEmployeeByProcedureV2(@PathVariable Long id) {
-		return employeeService.getEmployeeByProcedure(id);
+	public ResponseEntity<EmployeesEntity> getEmployeeByProcedureV2(@PathVariable Long id) {
+	    EmployeesEntity employee = employeeService.getEmployeeByProcedure(id);
+	    return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
+
 	
 	@GetMapping("/get-employees-by-view")
 	public ResponseEntity<List<EmployeeView>> getEmployeesByView(){

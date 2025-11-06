@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Core5</name>
 	<!-- Necesitamos el empaqetamiento war para poder desplegarlo en Tomacat -->
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
 	
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -68,12 +68,20 @@
 		    <optional>true</optional>
 		</dependency>
 		
-		<dependency>
+		<!-- to deploy in tomcat server -->
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		
+		</dependency> -->
+
+		<!-- for testing -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>	
+
 	</dependencies>
 
 	<build>
@@ -82,6 +90,54 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>0.8.12</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>report</id>
+			            <phase>test</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			            <configuration>
+			                <excludes>
+			                	<exclude>com/example/spring/core5/utils/*</exclude>
+			                    <exclude>**/entity/EmployeeEntity.class</exclude>
+			                    <exclude>**/entity/EmployeeView.class</exclude>
+			                </excludes>
+			            </configuration>
+			        </execution>
+			        <execution>
+			            <id>jacoco-check</id>
+			            <goals>
+			                <goal>check</goal>
+			            </goals>
+			            <configuration>
+			                <rules>
+			                    <rule>
+			                        <element>BUNDLE</element>
+			                        <limits>
+			                            <limit>
+			                                <counter>CLASS</counter>
+			                                <value>COVEREDRATIO</value>
+			                                <minimum>0.20</minimum>
+			                            </limit>
+			                        </limits>
+			                    </rule>
+			                </rules>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			
 		</plugins>
 	</build>
 
