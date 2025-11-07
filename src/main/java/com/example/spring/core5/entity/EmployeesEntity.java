@@ -8,20 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedStoredProcedureQuery;
-import jakarta.persistence.ParameterMode;
-import jakarta.persistence.StoredProcedureParameter;
 import jakarta.persistence.Table;
 
 
-/*@NamedStoredProcedureQuery(
-        name = "EmployeesEntity.GetEmployeeById",
-        procedureName = "buscarPersona",
-        resultClasses = EmployeesEntity.class,
-        parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = Long.class)
-        }
-)*/
 @Entity
 @Table(name = "employees")
 public class EmployeesEntity {

@@ -1,6 +1,8 @@
 package com.example.spring.core5.integration.employee;
 
-import java.net.SocketTimeoutException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,18 +28,12 @@ import com.example.spring.core5.entity.EmployeesEntity;
 import com.example.spring.core5.entity.views.EmployeeView;
 import com.example.spring.core5.utils.dto.EmployeeDTO;
 import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
-import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@Sql(scripts = "/import.sql")
 @ActiveProfiles("test")
-public class EmployeeServiceTest {
+class EmployeeServiceTest {
 	
 	
 	
@@ -96,7 +92,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeesEntityBuilder.getName());
@@ -126,7 +122,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeesEntityBuilder.getName());
@@ -157,7 +153,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeesEntityBuilder.getName());
@@ -187,7 +183,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeesEntityBuilder.getName());
@@ -218,7 +214,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeesEntityBuilder.getName());
@@ -248,7 +244,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertNotNull(employee.getEmployeeId());
 		assertEquals(employee.getName(), employeeDTOBuilder.getName());
@@ -278,7 +274,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		assertEquals(10, employee.size());
 		
@@ -304,7 +300,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 		///assertEquals(10, employee.size());
 		System.out.println("VIEW");
@@ -331,7 +327,7 @@ public class EmployeeServiceTest {
 		
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(200, response.getStatusCodeValue());
+		
 		
 	}
 

@@ -120,8 +120,8 @@
 			            <configuration>
 			                <excludes>
 			                	<exclude>com/example/spring/core5/utils/*</exclude>
-			                    <exclude>**/entity/EmployeeEntity.class</exclude>
-			                    <exclude>**/entity/views/EmployeeView.class</exclude>
+			                    <exclude>com/example/spring/core5/entity/EmployeesEntity.class</exclude>
+			                    <exclude>com/example/spring/core5/entity/views/EmployeeView.class</exclude>
 			                </excludes>
 			            </configuration>
 			        </execution>

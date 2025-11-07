@@ -14,7 +14,6 @@ import com.example.spring.core5.entity.views.EmployeeView;
 import com.example.spring.core5.service.EmployeeService;
 import com.example.spring.core5.utils.dto.EmployeeDTO;
 import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
-import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
 
 @RestController
 @RequestMapping("/employee")
