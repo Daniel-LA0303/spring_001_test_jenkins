@@ -36,8 +36,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         
         <!-- SONAR -->
-        <sonar.projectKey>spring_employee_ci_api_test</sonar.projectKey>
-        <sonar.projectName>spring_employee_ci_api_test</sonar.projectName>
+        <sonar.projectKey>spring_employee_ci_api_test2</sonar.projectKey>
+        <sonar.projectName>spring_employee_ci_api_test2</sonar.projectName>
         <sonar.host.url>http://192.168.100.3:9000</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.coverage.exclusions>src/**/entity/*</sonar.coverage.exclusions>		
@@ -121,7 +121,7 @@
 			                <excludes>
 			                	<exclude>com/example/spring/core5/utils/*</exclude>
 			                    <exclude>**/entity/EmployeeEntity.class</exclude>
-			                    <exclude>**/entity/EmployeeView.class</exclude>
+			                    <exclude>**/entity/views/EmployeeView.class</exclude>
 			                </excludes>
 			            </configuration>
 			        </execution>

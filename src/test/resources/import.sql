@@ -8,6 +8,6 @@ INSERT INTO employees (name, email, salary, bio, active, created_at, updated_at)
 INSERT INTO employees (name, email, salary, bio, active, created_at, updated_at) VALUES ('Sophia Hernandez', 'sophia.hernandez@example.com', 16500.60, 'Business analyst with background in finance and IT systems.', FALSE, '2025-01-27 10:40:00', '2025-02-01 09:00:00');
 INSERT INTO employees (name, email, salary, bio, active, created_at, updated_at) VALUES ('Luis Martinez', 'luis.martinez@example.com', 23000.30, 'Software architect focused on microservices and cloud computing.', TRUE, '2025-04-22 15:10:00', '2025-04-22 15:10:00');
 INSERT INTO employees (name, email, salary, bio, active, created_at, updated_at) VALUES ('Helen Cruz', 'helen.cruz@example.com', 15500.00, 'Technical support specialist focused on customer service and documentation.', TRUE, '2025-05-01 09:45:00', '2025-05-01 09:45:00');
-
-
+CREATE VIEW "view_employee_complex1" AS SELECT e.name, e.email, e.salary FROM employees e;
 CREATE ALIAS GetEmployeeById AS $$ ResultSet getEmployeeById(Connection conn, int employeeId) throws SQLException { String sql = "SELECT * FROM employees WHERE id = ?"; PreparedStatement ps = conn.prepareStatement(sql); ps.setInt(1, employeeId); return ps.executeQuery(); } $$;
+

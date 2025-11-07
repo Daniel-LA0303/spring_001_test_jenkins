@@ -13,6 +13,7 @@ import com.example.spring.core5.entity.EmployeesEntity;
 import com.example.spring.core5.entity.views.EmployeeView;
 import com.example.spring.core5.service.EmployeeService;
 import com.example.spring.core5.utils.dto.EmployeeDTO;
+import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
 import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
 
 @RestController
@@ -26,8 +27,9 @@ public class EmployeeController {
 	}
 	
 	@GetMapping()
-	public List<EmployeeInfoSmallInfoDTO> getAllEmployeesSmallInfo(){
-		return employeeService.getEmployeeInfoSmallInfoNativeQuery();
+	public ResponseEntity<List<EmployeeInfoSmallInfoResponseDTO>> getAllEmployeesSmallInfo(){
+		
+		return new ResponseEntity<>(employeeService.getEmployeeInfoSmallInfoNativeQuery(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
@@ -77,8 +79,6 @@ public class EmployeeController {
 	public ResponseEntity<List<EmployeeView>> getEmployeesByView(){
 		
 		List<EmployeeView> employeeView = employeeService.getAllEmployeesByView();
-		
-		
 		return new ResponseEntity<List<EmployeeView>>(employeeView, HttpStatus.OK);
 	}
 }

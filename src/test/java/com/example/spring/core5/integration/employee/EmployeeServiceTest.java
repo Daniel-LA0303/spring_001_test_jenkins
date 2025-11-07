@@ -1,6 +1,7 @@
 package com.example.spring.core5.integration.employee;
 
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -19,8 +20,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.example.spring.core5.builders.employee.EmployeeDTOBuilder;
 import com.example.spring.core5.builders.employee.EmployeeEntityBuilder;
 import com.example.spring.core5.entity.EmployeesEntity;
+import com.example.spring.core5.entity.views.EmployeeView;
+import com.example.spring.core5.utils.dto.EmployeeDTO;
+import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
+import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -32,6 +38,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@Sql(scripts = "/import.sql")
 @ActiveProfiles("test")
 public class EmployeeServiceTest {
+	
+	
 	
 	/**
 	 * test rest template
@@ -55,10 +63,17 @@ public class EmployeeServiceTest {
 	 */
 	EmployeesEntity employeesEntityBuilder;
 	
+	/**
+	 * dto
+	 */
+	EmployeeDTO employeeDTOBuilder;
+	
 	@BeforeEach
 	void setUp() {
 
 		employeesEntityBuilder = EmployeeEntityBuilder.withAllDummy().build();
+		
+		employeeDTOBuilder = EmployeeDTOBuilder.withAllDummy().build();
 
 		headers = new HttpHeaders();
 
@@ -189,7 +204,7 @@ public class EmployeeServiceTest {
 	
 	
 	@Test
-	@Order(4)
+	@Order(5)
 	void getEmployeeByIdByProcedureV2SuccessTest() {
 		
 		// 10 id
@@ -215,6 +230,108 @@ public class EmployeeServiceTest {
 		assertNotNull(employee.getUpdatedAt());
 		
 		System.out.println(employee.getName());
+		
+	}
+	
+	@Test
+	@Order(6)
+	void getEmployeeSmallInfoByIdSuccessTest() {
+		
+		// 10 id
+		ResponseEntity<EmployeeDTO> response = testRestTemplate.exchange(
+				"/employee/get-employee-small-info/9", HttpMethod.GET, null,
+				new ParameterizedTypeReference<EmployeeDTO>() {
+				});
+		
+		System.out.println("*********** RESPONSE *************");
+		EmployeeDTO employee = response.getBody();
+		
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(200, response.getStatusCodeValue());
+		
+		assertNotNull(employee.getEmployeeId());
+		assertEquals(employee.getName(), employeeDTOBuilder.getName());
+		assertEquals(employee.getActive(), employeeDTOBuilder.getActive());
+		assertEquals(employee.getEmail(), employeeDTOBuilder.getEmail());
+		assertEquals(employee.getSalary(), employeeDTOBuilder.getSalary());
+		assertNotNull(employee.getCreatedAt());
+		
+		System.out.println(employee.getName());
+		
+	}
+	
+	@Test
+	@Order(7)
+	void getAllEmployeesSmallInfoByIdSuccessTest() {
+		
+		ResponseEntity<List<EmployeeInfoSmallInfoResponseDTO>> response = testRestTemplate.exchange(
+			    "/employee",
+			    HttpMethod.GET,
+			    null,
+			    new ParameterizedTypeReference<List<EmployeeInfoSmallInfoResponseDTO>>() {}
+			);
+
+		
+		System.out.println("*********** RESPONSE *************");
+		List<EmployeeInfoSmallInfoResponseDTO> employee = response.getBody();
+		
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(200, response.getStatusCodeValue());
+		
+		assertEquals(10, employee.size());
+		
+		System.out.println(employee.size());
+		
+	}
+
+	@Test
+	@Order(8)
+	void getAllEmployeesByViewSuccessTest() {
+		
+		// 10 id
+		ResponseEntity<List<EmployeeView>> response = testRestTemplate.exchange(
+			    "/employee/get-employees-by-view",
+			    HttpMethod.GET,
+			    null,
+			    new ParameterizedTypeReference<List<EmployeeView>>() {}
+			);
+
+		
+		System.out.println("*********** RESPONSE *************");
+		List<EmployeeView> employee = response.getBody();
+		
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(200, response.getStatusCodeValue());
+		
+		///assertEquals(10, employee.size());
+		System.out.println("VIEW");
+		System.out.println(employee.size());
+		
+	}
+
+	
+	@Test
+	@Order(9)
+	void getAllEmployeesByNativeQuerySuccessTest() {
+		
+		// 10 id
+		ResponseEntity<Object> response = testRestTemplate.exchange(
+			    "/employee/get-employee-by-email-native-query/helen.cruz@example.com",
+			    HttpMethod.GET,
+			    null,
+			    new ParameterizedTypeReference<Object>() {}
+			);
+
+		
+		System.out.println("*********** RESPONSE *************");
+		Object employee = response.getBody();
+		
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(200, response.getStatusCodeValue());
 		
 	}
 

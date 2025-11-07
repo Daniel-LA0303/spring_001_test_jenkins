@@ -10,6 +10,7 @@ import com.example.spring.core5.entity.views.EmployeeView;
 import com.example.spring.core5.repository.EmployeeRepository;
 import com.example.spring.core5.repository.views.EmployeeViewRepository;
 import com.example.spring.core5.utils.dto.EmployeeDTO;
+import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
 import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
 
 @Service
@@ -45,8 +46,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<EmployeeInfoSmallInfoDTO> getEmployeeInfoSmallInfoNativeQuery() {
-		return employeeRepository.getAllEmployeesSmallInfo();
+	public List<EmployeeInfoSmallInfoResponseDTO> getEmployeeInfoSmallInfoNativeQuery() {
+		 List<EmployeeInfoSmallInfoDTO> projections = employeeRepository.getAllEmployeesSmallInfo();
+		    
+		    return projections.stream()
+		        .map(p -> new EmployeeInfoSmallInfoResponseDTO(p.getId(), p.getName(), p.getEmail(), p.getSalary()))
+		        .toList();
 	}
 
 	@Override
@@ -62,12 +67,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return employeeRepository.getEmployeeByProcedureV1(id);
 	}
 	
-	@Override
+	/*@Override
     @Transactional
 	public EmployeesEntity getEmployeeByProcedureV2(Long id) {
 
 		return employeeRepository.getEmployeeByProcedureV2(id);
-	}
+	}*/
 
 	@Override
 	public List<EmployeeView> getAllEmployeesByView() {

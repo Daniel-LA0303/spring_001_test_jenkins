@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.spring.core5.entity.EmployeesEntity;
 import com.example.spring.core5.entity.views.EmployeeView;
 import com.example.spring.core5.utils.dto.EmployeeDTO;
-import com.example.spring.core5.utils.projections.EmployeeInfoSmallInfoDTO;
+import com.example.spring.core5.utils.dto.EmployeeInfoSmallInfoResponseDTO;
 
 public interface EmployeeService {
 	
@@ -17,13 +17,13 @@ public interface EmployeeService {
 	
 	public EmployeesEntity getEmployeeByIdNativeQuery(Long id);
 	
-	public List<EmployeeInfoSmallInfoDTO> getEmployeeInfoSmallInfoNativeQuery();
+	public List<EmployeeInfoSmallInfoResponseDTO> getEmployeeInfoSmallInfoNativeQuery();
 	
 	public Object getEmployeeByNameSmallInfo(String email);
 	
 	public EmployeesEntity getEmployeeByProcedure(Long id);
 	
-	public EmployeesEntity getEmployeeByProcedureV2(Long id);
+	//public EmployeesEntity getEmployeeByProcedureV2(Long id);
 	
 	public List<EmployeeView> getAllEmployeesByView();
 
